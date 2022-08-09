@@ -1,22 +1,9 @@
-import axios from "axios";
+import * as express from 'express';
+const app = express();
+import fetch from 'node-fetch';
 
-let response = null
-new Promise(async(resolve, reject) => {
-    try {
-        response = await axios.get('pro-api.coinmarketcap.com', {
-          headers: {
-            'X-CMC_PRO_API_KEY': 'my-api',
-          },
-        });
-      } catch(ex) {
-        response = null;
-        // error
-        console.log(ex);
-        reject(ex);
-      }
-      if (response) {
-        const json = response.data; 
-        console.log(json);
-        resolve(json);
-      }
-})
+const response = await fetch("https://pro-api.coinmarketcap.com/v1/cryptocurrency/category")
+
+
+
+app.listen(3000, "Server running on 3000 port")
